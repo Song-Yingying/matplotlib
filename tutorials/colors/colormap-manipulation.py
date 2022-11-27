@@ -34,9 +34,10 @@ Below we use a modest value of 8 so there are not a lot of values to look at.
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
-viridis = mpl.colormaps['viridis'].resampled(8)
+viridis = cm.get_cmap('viridis', 8)
 
 ##############################################################################
 # The object ``viridis`` is a callable, that when passed a float between
@@ -72,7 +73,7 @@ print('viridis(np.linspace(0, 1, 12))', viridis(np.linspace(0, 1, 12)))
 # However, one may still call the colormap with an integer array, or with a
 # float array between 0 and 1.
 
-copper = mpl.colormaps['copper'].resampled(8)
+copper = cm.get_cmap('copper', 8)
 
 print('copper(range(8))', copper(range(8)))
 print('copper(np.linspace(0, 1, 8))', copper(np.linspace(0, 1, 8)))
@@ -123,7 +124,7 @@ plot_examples([cmap])
 # For example, suppose we want to make the first 25 entries of a 256-length
 # "viridis" colormap pink for some reason:
 
-viridis = mpl.colormaps['viridis'].resampled(256)
+viridis = cm.get_cmap('viridis', 256)
 newcolors = viridis(np.linspace(0, 1, 256))
 pink = np.array([248/256, 24/256, 148/256, 1])
 newcolors[:25, :] = pink
@@ -145,8 +146,8 @@ plot_examples([viridis, newcmp])
 ##############################################################################
 # and we can easily concatenate two colormaps:
 
-top = mpl.colormaps['Oranges_r'].resampled(128)
-bottom = mpl.colormaps['Blues'].resampled(128)
+top = cm.get_cmap('Oranges_r', 128)
+bottom = cm.get_cmap('Blues', 128)
 
 newcolors = np.vstack((top(np.linspace(0, 1, 128)),
                        bottom(np.linspace(0, 1, 128))))
